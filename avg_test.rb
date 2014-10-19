@@ -15,7 +15,10 @@ year_beg = "1959"#.gets.chomp
 year_end = "1964"#.gets.chomp
 
 player = Player.new(player_id)
+puts player.name_first + " " + player.name_last + " - Average:"
 avg = Average.new(player)
 avg.find_avg
+print ("\n")
+puts player.name_first + " " + player.name_last + " - OBP:"
 obp = Obp.new(player)
 obp.find_obp
