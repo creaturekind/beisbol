@@ -1,15 +1,16 @@
-require 'mysql2'
 #require_relative './player'
+require_relative './batting'
 
-class Average #< Player 
+class Average < Batting
   def initialize(player)
-    @client = Mysql2::Client.new(:host => "localhost", 
-        :username => "beisbol", :password => "test")
+=begin
     @avg_query = "select yearID, (H/AB) as avg from bdb.Batting where 
-        playerID = '#{player.pid}' and yearID between 
+        playerID = '#{player.player_id}' and yearID between 
         year(str_to_date('#{player.debut}', '%m/%d/%Y')) and 
         year(str_to_date('#{player.final_game}', '%m/%d/%Y'))"
-    @avg_result = @client.query(@avg_query, :symbolize_keys => true)
+    @avg_result = connection.query(@avg_query, :symbolize_keys => true)
+=end
+    
   end
   def find_avg
     @avg_result.each do |row|

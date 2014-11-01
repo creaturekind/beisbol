@@ -3,9 +3,9 @@ require 'io/console'
 require_relative './lib/player'
 require_relative './lib/avg'
 require_relative './lib/obp'
+require_relative './lib/bdb_connect'
 
-con = Mysql2::Client.new(:host => "localhost", :username => "beisbol", 
-		:password => "test")
+con = bdb_connect
 
 #print "player: "
 player_id = "aaronha01"#.gets.chomp
@@ -14,11 +14,11 @@ player_id = "aaronha01"#.gets.chomp
 year_beg = "1959"#.gets.chomp
 year_end = "1964"#.gets.chomp
 
-player = Player.new(player_id)
+player = Player.new(con, player_id)
 puts player.name_first + " " + player.name_last + " - Average:"
-avg = Average.new(player)
+avg = Average.new(con, player)
 avg.find_avg
 print ("\n")
 puts player.name_first + " " + player.name_last + " - OBP:"
-obp = Obp.new(player)
+obp = Obp.new(con, player)
 obp.find_obp

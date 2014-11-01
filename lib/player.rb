@@ -1,20 +1,14 @@
-require 'mysql2'
-#require_relative './avg'
-
 class Player
   attr_reader :pid, :beisbol_id, :player_id, :manager_id, :hof_id, 
       :birth_year, :birth_month, :birth_day, :name_first, :name_last, 
       :name_note, :name_given, :name_nick, :weight, :height, :bats, 
       :throws, :debut, :final_game, :college
-  def initialize(player_id)
-    @pid = player_id
-    @client = Mysql2::Client.new(:host => "localhost", 
-        :username => "beisbol", :password => "test")
+  def initialize(sql_con, player_id)
     @player_query = "select lahmanID, playerID, managerID, hofID, 
         birthYear, birthMonth, birthDay, nameFirst, nameLast, nameNote,
         nameGiven, nameNick, weight, height, bats, throws, debut,
         finalGame, college from bdb.Master where playerID = '#{player_id}'"
-    @player_result = @client.query(@player_query, :symbolize_keys => true)
+    @player_result = sql_con.query(@player_query, :symbolize_keys => true)
     
     @player_result.each do |row|
       @beisbol_id = row[:lahmanID]
