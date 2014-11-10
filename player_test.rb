@@ -15,3 +15,4 @@ year_end = "1964"#.gets.chomp
 player = Player.new(con, player_id)
 puts player.player_id
 puts player.weight
+#A Change!

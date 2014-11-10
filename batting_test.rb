@@ -11,14 +11,13 @@ con = bdb_connect
 player_id = "aaronha01"#.gets.chomp
 
 #print "year: "
-year_beg = "1959"#.gets.chomp
-year_end = "1964"#.gets.chomp
 
 player = Player.new(con, player_id)
-puts player.name_first + " " + player.name_last + " - Average:"
-player.batting.avg.find_avg
+puts player.name_first + " " + player.name_last + " - Hits:"
+player.batting(player)
 
 print ("\n")
 puts player.name_first + " " + player.name_last + " - OBP:"
 obp = Obp.new(con, player)
 obp.find_obp
+

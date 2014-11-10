@@ -1,4 +1,7 @@
+require_relative './batting'
+
 class Player
+  include Batting
   attr_reader :pid, :beisbol_id, :player_id, :manager_id, :hof_id, 
       :birth_year, :birth_month, :birth_day, :name_first, :name_last, 
       :name_note, :name_given, :name_nick, :weight, :height, :bats, 
